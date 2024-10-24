@@ -34,9 +34,9 @@ document.getElementById('iniciar-quiz').addEventListener('click', () => {
 // Criando Gráficos Dinâmicos
 const ctx = document.getElementById('grafico').getContext('2d');
 const dados = {
-    labels: ['Filmes Clássicos', 'Filmes Modernos', 'Filmes Independentes'],
+    labels: ['Soja', 'café', 'cereal'],
     datasets: [{
-        label: 'Popularidade dos Filmes de Terror',
+        label: 'produtos do Brasil com maior exportação',
         data: [40, 30, 20],
         backgroundColor: [
             'rgba(229, 57, 53, 0.5)',
