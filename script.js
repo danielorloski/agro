@@ -1,65 +1,79 @@
-// Gerador de Senhas Seguras
-function gerarSenha(tamanho = 12) {
-    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
-    let senha = '';
-    for (let i = 0; i < tamanho; i++) {
-        senha += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+const questions = [
+    {
+        question: "Quem é o atual ministro da Agricultura e Pecuária?",
+        options: ["Luis Inácio", "Carlos Fávaro", "Ricardo Nunes"],
+        answer: "Carlos Fávaro"
+    },
+    {
+        question: "Qual é a principal cultura agrícola do Brasil?",
+        options: ["Café", "Soja", "Milho"],
+        answer: "Soja"
+    },
+    {
+        question: "O que é a Embrapa?",
+        options: ["Uma escola", "Uma empresa de pesquisa agropecuária", "Um sindicato"],
+        answer: "Uma empresa de pesquisa agropecuária"
+    },
+    {
+        question: "Qual estado é o maior produtor de milho no Brasil?",
+        options: ["Minas Gerais", "Paraná", "São Paulo"],
+        answer: "Paraná"
+    },
+    {
+        question: "Qual a importância do agronegócio para a economia brasileira?",
+        options: ["Nenhuma", "Fundamental", "Secundária"],
+        answer: "Fundamental"
     }
-    return senha;
-}
-
-document.getElementById('gerar-senha').addEventListener('click', () => {
-    const senhaSegura = gerarSenha();
-    document.getElementById('senha-segurada').innerText = `Senha gerada: ${senhaSegura}`;
-});
-
-// Funções para o Quiz
-const perguntas = [
-    { pergunta: "Quem é responsável pelo ministério da agricultura e pecuária?", respostas: ["Carlos Fávaro", "Luis Inacio", "Ricardo Nunes"], respostaCorreta: 0 },
-    { pergunta: "Quais as commodities que vem da agricultura?", respostas: ["soja, café, carne bovina", "óleo de soja, alumínio", "petróleo, produtos eletronicos"], respostaCorreta: 0 },
-    { pergunta: "qual é o país que mais gera alimento no mundo?", respostas: ["China,Brasil", "E.U.A, Argentina", "uruguai, Portugal"], respostaCorreta: 0 },
 ];
 
-document.getElementById('iniciar-quiz').addEventListener('click', () => {
-    let acertos = 0;
-    perguntas.forEach((pergunta, index) => {
-        const respostaUsuario = prompt(pergunta.pergunta + '\n' + pergunta.respostas.join('\n'));
-        if (pergunta.respostas[pergunta.respostaCorreta].toLowerCase() === respostaUsuario.toLowerCase()) {
-            acertos++;
-        }
+let currentQuestionIndex = 0;
+
+document.getElementById('start-button').addEventListener('click', startQuiz);
+document.getElementById('next-button').addEventListener('click', showNextQuestion);
+
+function startQuiz() {
+    document.getElementById('start-button').classList.add('hidden');
+    document.getElementById('qa-section').classList.remove('hidden');
+    showQuestion();
+}
+
+function showQuestion() {
+    const question = questions[currentQuestionIndex];
+    document.getElementById('question').innerText = question.question;
+    
+    const optionsContainer = document.getElementById('options');
+    optionsContainer.innerHTML = '';
+
+    question.options.forEach(option => {
+        const button = document.createElement('button');
+        button.innerText = option;
+        button.addEventListener('click', () => checkAnswer(option));
+        optionsContainer.appendChild(button);
     });
-    document.getElementById('resultado-quiz').innerText = `Você acertou ${acertos} de ${perguntas.length} perguntas!`;
-});
 
-// Criando Gráficos Dinâmicos
-const ctx = document.getElementById('grafico').getContext('2d');
-const dados = {
-    labels: ['Soja', 'café', 'cereal'],
-    datasets: [{
-        label: 'produtos do Brasil com maior exportação',
-        data: [40, 30, 20],
-        backgroundColor: [
-            'rgba(229, 57, 53, 0.5)',
-            'rgba(255, 193, 7, 0.5)',
-            'rgba(76, 175, 80, 0.5)',
-        ],
-        borderColor: [
-            'rgba(229, 57, 53, 1)',
-            'rgba(255, 193, 7, 1)',
-            'rgba(76, 175, 80, 1)',
-        ],
-        borderWidth: 1
-    }]
-};
+    document.getElementById('next-button').classList.add('hidden');
+    document.getElementById('response').classList.add('hidden');
+}
 
-const grafico = new Chart(ctx, {
-    type: 'bar',
-    data: dados,
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
+function checkAnswer(selectedOption) {
+    const question = questions[currentQuestionIndex];
+    const responseDiv = document.getElementById('response');
+    
+    if (selectedOption === question.answer) {
+        responseDiv.innerText = "Correto!";
+    } else {
+        responseDiv.innerText = `Incorreto! A resposta correta é: ${question.answer}`;
     }
-});
+
+    responseDiv.classList.remove('hidden');
+    document.getElementById('next-button').classList.remove('hidden');
+}
+
+function showNextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        showQuestion();
+    } else {
+        document.getElementById('qa-section').innerHTML = "<h2>Fim do Quiz! Obrigado por participar!</h2>";
+    }
+}
