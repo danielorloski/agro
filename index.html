@@ -14,25 +14,109 @@
 
     <main>
         <section id="qa-section">
-            <h2>Pergunta: Quem é responsável pelo ministério da agricultura e pecuária?</h2>
+            <h2>Pergunta 1: Quem é responsável pelo Ministério da Agricultura e Pecuária?</h2>
             <p>Opções: 
-                <label><input type="radio" name="answer" value="Luis Inacio"> a) Luis Inácio</label>
-                <label><input type="radio" name="answer" value="Carlos Fávaro"> b) Carlos Fávaro</label>
-                <label><input type="radio" name="answer" value="Ricardo Nunes"> c) Ricardo Nunes</label>
+                <label for="option-1"><input type="radio" id="option-1" name="answer1" value="Luis Inácio"> a) Luis Inácio</label><br>
+                <label for="option-2"><input type="radio" id="option-2" name="answer1" value="Carlos Fávaro"> b) Carlos Fávaro</label><br>
+                <label for="option-3"><input type="radio" id="option-3" name="answer1" value="Ricardo Nunes"> c) Ricardo Nunes</label>
+        
             </p>
-            <button id="ask-button">Responder</button>
-            <div id="response"></div>
+            <img src="download.jpeg" alt="">
+            <button class="ask-button" data-question="1">Responder</button>
+            <div class="response" data-question="1"></div>
+        </section>
+
+        <section id="qa-section">
+            <h2>Pergunta 2: Qual é o maior produtor de soja no Brasil?</h2>
+            <p>Opções: 
+                <label for="option-4"><input type="radio" id="option-4" name="answer2" value="Mato Grosso"> a) Mato Grosso</label><br>
+                <label for="option-5"><input type="radio" id="option-5" name="answer2" value="Paraná"> b) Paraná</label><br>
+                <label for="option-6"><input type="radio" id="option-6" name="answer2" value="Rio Grande do Sul"> c) Rio Grande do Sul</label>
+            </p>
+            <img src="images.jpeg" alt="">
+            <button class="ask-button" data-question="2">Responder</button>
+            <div class="response" data-question="2"></div>
+        </section>
+
+        <section id="qa-section">
+            <h2>Pergunta 3: O Brasil é o maior exportador de qual produto agrícola?</h2>
+            <p>Opções: 
+                <label for="option-7"><input type="radio" id="option-7" name="answer3" value="Café"> a) Café</label><br>
+                <label for="option-8"><input type="radio" id="option-8" name="answer3" value="Cana-de-açúcar"> b) Cana-de-açúcar</label><br>
+                <label for="option-9"><input type="radio" id="option-9" name="answer3" value="Soja"> c) Soja</label>
+            </p>
+            <img src="agricultura-envenenada-el-importante-papel-que-juegan-los-pesticidas-en-la-produccion-agricola-a-nivel-mundial-1700780402113_512.webp" alt="">
+            <button class="ask-button" data-question="3">Responder</button>
+            <div class="response" data-question="3"></div>
+        </section>
+
+        <section id="qa-section">
+            <h2>Pergunta 4: Qual estado brasileiro é conhecido como o "celeiro do mundo" devido à sua produção agrícola?</h2>
+            <p>Opções: 
+                <label for="option-10"><input type="radio" id="option-10" name="answer4" value="Mato Grosso do Sul"> a) Mato Grosso do Sul</label><br>
+                <label for="option-11"><input type="radio" id="option-11" name="answer4" value="Mato Grosso"> b) Mato Grosso</label><br>
+                <label for="option-12"><input type="radio" id="option-12" name="answer4" value="Goiás"> c) Goiás</label>
+            </p>
+            <img src="images (1).jpeg" alt="">
+            <button class="ask-button" data-question="4">Responder</button>
+            <div class="response" data-question="4"></div>
+        </section>
+
+        <section id="qa-section">
+            <h2>Pergunta 5: Qual é a principal cultura agrícola do Brasil?</h2>
+            <p>Opções: 
+                <label for="option-13"><input type="radio" id="option-13" name="answer5" value="Café"> a) Café</label><br>
+                <label for="option-14"><input type="radio" id="option-14" name="answer5" value="Soja"> b) Soja</label><br>
+                <label for="option-15"><input type="radio" id="option-15" name="answer5" value="Arroz"> c) Arroz</label>
+            </p>
+            <img src="Agricultura-de-precisao-1215x683.jpeg.webp" alt="">
+            <button class="ask-button" data-question="5">Responder</button>
+            <div class="response" data-question="5"></div>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2024 Meu Site de Perguntas e Respostas. Contato via Instagram: 
-            <a href="https://www.instagram.com/joãopeidaleite" target="_blank">@joãopeidaleite</a>, 
-            <a href="https://www.instagram.com/matheuschoranatora" target="_blank">@matheuschoranatora</a>, 
-            <a href="https://www.instagram.com/danieldasidosa" target="_blank">@danieldasidosa</a>
+            <a href="https://www.instagram.com/joãopeidaleite" target="_blank">@joão vitor guimarães</a>, 
+            <a href="https://www.instagram.com/matheuschoranatora" target="_blank">@matheus kruchelski</a>, 
+            <a href="https://www.instagram.com/danieldasidosa" target="_blank">@daniel orloski</a>
+            quizz contendo informações sobre o agro negócio brasileiro, governantes, importação e exportação etc...
         </p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('.ask-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const questionNumber = button.getAttribute('data-question');
+                const selectedOption = document.querySelector(`input[name="answer${questionNumber}"]:checked`);
+                const responseDiv = document.querySelector(`.response[data-question="${questionNumber}"]`);
+
+                if (selectedOption) {
+                    const answer = selectedOption.value;
+                    let correctAnswer;
+                    
+                    if (questionNumber === "1") {
+                        correctAnswer = "Carlos Fávaro";
+                    } else if (questionNumber === "2") {
+                        correctAnswer = "Mato Grosso";
+                    } else if (questionNumber === "3") {
+                        correctAnswer = "Soja";
+                    } else if (questionNumber === "4") {
+                        correctAnswer = "Mato Grosso";
+                    } else if (questionNumber === "5") {
+                        correctAnswer = "Soja";
+                    }
+
+                    if (answer === correctAnswer) {
+                        responseDiv.innerHTML = `<p><strong>Resposta correta!</strong> A resposta correta é ${correctAnswer}.</p>`;
+                    } else {
+                        responseDiv.innerHTML = `<p><strong>Resposta incorreta.</strong> A resposta correta é ${correctAnswer}.</p>`;
+                    }
+                } else {
+                    responseDiv.innerHTML = '<p>Por favor, selecione uma opção.</p>';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

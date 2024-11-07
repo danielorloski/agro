@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px; /* Adicionando margem ao redor do corpo */
+    padding: 20px;
+    background-color: #ffffff; /* Cor de fundo branco */
+    border: 10px solid #00a859; /* Borda verde, representando a cor da bandeira */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #0033a0; /* Azul da bandeira */
+    color: #ffffff; /* Texto branco */
+    padding: 10px 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffcc00; /* Amarelo da bandeira */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 10px;
+    background-color: #003cff; /* Azul da bandeira */
+    color: #ffffff; /* Texto branco */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00a859; /* Verde da bandeira no hover */
+}
+
+#options {
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    background-color: #000000; /* Azul da bandeira */
+    color: #ffffff; /* Texto branco */
+    padding: 10px 0;
+}
+/* Garantir que todas as imagens tenham o mesmo tamanho */
+#qa-section img {
+    width: 100%; /* As imagens irão ocupar toda a largura do contêiner */
+    height: auto; /* A altura será ajustada proporcionalmente */
+    max-width: 400px; /* Limita a largura máxima da imagem */
+    display: block; /* Remove o espaço embaixo da imagem */
+    margin: 0 auto; /* Centraliza a imagem */
+}
+
